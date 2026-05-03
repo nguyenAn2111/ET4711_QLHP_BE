@@ -1,0 +1,271 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+background:#f6fbf7;
+}
+
+/* LAYOUT */
+
+.layout{
+display:flex;
+height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:260px;
+background:white;
+display:flex;
+flex-direction:column;
+border-right:1px solid #e6f1e8;
+box-shadow:0 4px 20px rgba(0,0,0,0.05);
+}
+
+/* HEADER */
+
+.sidebar-header{
+padding:16px 20px;
+border-bottom:1px solid #eef3ef;
+}
+
+.sidebar-header h2{
+margin:0;
+font-size:20px;
+font-weight:700;
+color:#2f5d3a;
+}
+
+/* MENU */
+
+.menu{
+display:flex;
+flex-direction:column;
+margin-top:4px;      /* sát header */
+padding:8px;         /* padding nhỏ */
+gap:8px;             /* khoảng cách giữa item */
+}
+
+/* MENU ITEM */
+
+.menu-item{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+padding:12px 14px;
+
+border-radius:8px;
+
+text-decoration:none;
+
+color:#3d5c44;
+
+font-size:15px;
+
+transition:0.25s;
+cursor:pointer;
+}
+
+/* ICON */
+
+.menu-item i{
+width:20px;
+}
+
+/* HOVER */
+
+.menu-item:hover{
+background:#e9f7ee;
+color:#1b8a4b;
+transform:translateX(4px);
+}
+
+/* ACTIVE */
+
+.menu-item.active{
+background:linear-gradient(90deg,#8be0a6,#59c47a);
+color:white;
+font-weight:600;
+}
+
+/* LOGOUT */
+
+.logout{
+
+margin-top:auto;      /* đẩy xuống đáy sidebar */
+margin:15px;
+
+padding:14px;
+
+border:none;
+
+border-radius:8px;
+
+background:#ef4444;
+
+color:white;
+
+cursor:pointer;
+}
+
+/* CONTENT */
+
+.content{
+flex:1;
+padding:40px;
+}*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+background:#f6fbf7;
+}
+
+/* LAYOUT */
+
+.layout{
+display:flex;
+height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:300px;
+background:white;
+display:flex;
+flex-direction:column;
+border-right:1px solid #e6f1e8;
+box-shadow:0 6px 20px rgba(0,0,0,0.06);
+}
+
+/* HEADER */
+
+.sidebar-header{
+padding:18px 20px;
+border-bottom:1px solid #eef3ef;
+}
+
+.sidebar-header h2{
+font-size:20px;
+font-weight:700;
+color:#2f5d3a;
+}
+
+/* MENU */
+
+.menu{
+display:flex;
+flex-direction:column;
+gap:20px;
+padding:12px;
+}
+
+/* MENU ITEM */
+
+.menu-item{
+
+display:flex;
+align-items:center;
+gap:14px;
+
+padding:14px 16px;
+
+border-radius:10px;
+
+text-decoration:none;
+
+color:#355a3e;
+
+font-size:17px;
+
+font-weight:550;
+
+transition:all 0.25s ease;
+
+cursor:pointer;
+}
+
+/* ICON */
+
+.menu-item i{
+font-size:16px;
+width:24px;
+color:#59c47a;
+}
+
+/* HOVER */
+
+.menu-item:hover{
+
+background:#e9f7ee;
+
+transform:translateX(5px);
+
+box-shadow:0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* ACTIVE */
+
+.menu-item.active{
+
+background:linear-gradient(90deg,#8be0a6,#59c47a);
+
+color:white;
+
+font-weight:600;
+
+box-shadow:0 6px 16px rgba(0,0,0,0.12);
+}
+
+.menu-item.active i{
+color:white;
+}
+
+/* LOGOUT */
+
+.logout{
+
+margin-top:auto;     /* đẩy xuống đáy */
+
+margin-left:15px;
+margin-right:15px;
+margin-bottom:20px;
+
+padding:14px;
+
+border:none;
+
+border-radius:10px;
+
+background:#ef4444;
+
+color:white;
+
+font-size:15px;
+
+cursor:pointer;
+
+transition:0.25s;
+}
+
+.logout:hover{
+background:#dc2626;
+}
+
+/* CONTENT */
+
+.content{
+flex:1;
+padding:40px;
+}
