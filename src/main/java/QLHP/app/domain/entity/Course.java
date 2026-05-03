@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 import QLHP.app.common.enums.CourseStatus;
 import QLHP.app.common.enums.CourseType;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;

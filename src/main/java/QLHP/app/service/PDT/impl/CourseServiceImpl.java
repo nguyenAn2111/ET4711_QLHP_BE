@@ -1,10 +1,12 @@
 package QLHP.app.service.PDT.impl;
 
 import QLHP.app.common.enums.CourseStatus;
+import QLHP.app.common.enums.RegisStatus;
 import QLHP.app.common.enums.SysError;
 import QLHP.app.domain.dto.CourseDetailDto;
 import QLHP.app.domain.dto.CourseViewDto;
 import QLHP.app.domain.entity.Course;
+import QLHP.app.domain.entity.RegItem;
 import QLHP.app.domain.mapper.CourseDetailMapper;
 import QLHP.app.domain.mapper.CourseVIewMapper;
 import QLHP.app.domain.payload.request.CreateCourseRequest;
@@ -17,6 +19,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -77,6 +81,66 @@ public class CourseServiceImpl implements CourseService {
         Course savedCourse = this.courseRepository.save(existingCourse);
         CourseDetailDto detailDto = this.courseDetailMapper.toDto(savedCourse);
         return detailDto;
+    }
+
+    @Override
+    @Transactional
+    public List<Integer> openAllCourse(){
+        List<Course> regisList = this.courseRepository.findAll();
+
+        if (regisList.isEmpty()) {
+            throw new RuntimeException("No course found");
+        }
+
+        regisList.forEach(regis -> regis.setStatus(CourseStatus.OPEN));
+        courseRepository.saveAll(regisList);
+
+        return regisList.stream()
+                .map(Course::getId)
+                .toList();
+    }
+
+    @Override
+    @Transactional
+    public List<Integer> closeAllCourse(){
+        List<Course> regisList = this.courseRepository.findAll();
+
+        if (regisList.isEmpty()) {
+            throw new RuntimeException("No course found");
+        }
+
+        regisList.forEach(regis -> regis.setStatus(CourseStatus.CLOSED));
+        courseRepository.saveAll(regisList);
+
+        return regisList.stream()
+                .map(Course::getId)
+                .toList();
+    }
+
+    @Override
+    @Transactional
+    public Integer closeCourse(Integer id){
+        Course course = courseRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Course not found"));
+
+        course.setStatus(CourseStatus.CLOSED);
+
+        courseRepository.save(course);
+
+        return course.getId();
+    }
+
+    @Override
+    @Transactional
+    public Integer openCourse(Integer id){
+        Course course = courseRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Course not found"));
+
+        course.setStatus(CourseStatus.OPEN);
+
+        courseRepository.save(course);
+
+        return course.getId();
     }
 
     @Override

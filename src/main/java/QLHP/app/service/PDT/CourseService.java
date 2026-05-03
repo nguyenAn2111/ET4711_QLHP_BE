@@ -9,6 +9,7 @@ import QLHP.app.domain.payload.request.UpdateCourseRequest;
 import QLHP.fw.web.rest.vm.BaseResponse;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Service
@@ -20,6 +21,12 @@ public interface CourseService {
     CourseDetailDto getCourseById(Integer id);
 
     CourseDetailDto updateCourse(Integer id, UpdateCourseRequest request);
+
+    List<Integer> openAllCourse();
+    List<Integer> closeAllCourse();
+
+    Integer closeCourse(Integer id);
+    Integer openCourse(Integer id);
 
     boolean deleteCourse(Integer id);
 }

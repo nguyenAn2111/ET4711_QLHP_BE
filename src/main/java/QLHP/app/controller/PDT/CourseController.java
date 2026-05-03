@@ -12,6 +12,7 @@ import javax.validation.Valid;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1.0/pdt/course")
 public class CourseController {
 
@@ -46,6 +47,39 @@ public class CourseController {
         log.info("Request PUT /course/{}: {}",id, request);
         var response = this.courseService.updateCourse(id, request);
         log.info("Response from PUT /course/{}", response);
+        return BaseResponse.ok(response);
+    }
+
+    @PutMapping("/openAll")
+    public BaseResponse<?> openAllCourse(){
+        log.info("Request PUT /course/openAll");
+        var response = this.courseService.openAllCourse();
+        log.info("Response from PUT /course/openAll: {}", response);
+        return BaseResponse.ok(response);
+    }
+
+    @PutMapping("/closeAll")
+    public BaseResponse<?> closeAllCourse(){
+        log.info("Request PUT /course/closeAll");
+        var response = this.courseService.closeAllCourse();
+        log.info("Response from PUT /course/closeAll: {}", response);
+        return BaseResponse.ok(response);
+    }
+
+    @PutMapping("/open")
+    public BaseResponse<?> openCourse(@RequestParam Integer id){
+        log.info("Request PUT /course/close/{}", id);
+        var response = this.courseService.openCourse(id);
+        log.info("Response from PUT /course/close/{}", response);
+        return BaseResponse.ok(response);
+    }
+
+
+    @PutMapping("/close")
+    public BaseResponse<?> clodeCourse(@RequestParam Integer id){
+        log.info("Request PUT /course/close/{}", id);
+        var response = this.courseService.closeCourse(id);
+        log.info("Response from PUT /course/close/{}", response);
         return BaseResponse.ok(response);
     }
 

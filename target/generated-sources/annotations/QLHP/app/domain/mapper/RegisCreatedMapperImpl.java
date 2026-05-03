@@ -14,40 +14,40 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-05-02T00:49:21+0700",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 21.0.10 (Ubuntu)"
+    date = "2026-05-03T19:51:44+0700",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.18 (Ubuntu)"
 )
 @Component
 public class RegisCreatedMapperImpl implements RegisCreatedMapper {
 
     @Override
-    public RegItem toEntity(RegisCreatedDto arg0) {
-        if ( arg0 == null ) {
+    public RegItem toEntity(RegisCreatedDto dto) {
+        if ( dto == null ) {
             return null;
         }
 
         RegItem regItem = new RegItem();
 
-        regItem.setCode( arg0.getCode() );
-        if ( arg0.getStatus() != null ) {
-            regItem.setStatus( Enum.valueOf( RegisStatus.class, arg0.getStatus() ) );
+        regItem.setCode( dto.getCode() );
+        if ( dto.getStatus() != null ) {
+            regItem.setStatus( Enum.valueOf( RegisStatus.class, dto.getStatus() ) );
         }
-        if ( arg0.getCreated_at() != null ) {
-            regItem.setCreated_at( LocalDateTime.parse( arg0.getCreated_at() ) );
+        if ( dto.getCreated_at() != null ) {
+            regItem.setCreated_at( LocalDateTime.parse( dto.getCreated_at() ) );
         }
-        regItem.setTerm( arg0.getTerm() );
+        regItem.setTerm( dto.getTerm() );
 
         return regItem;
     }
 
     @Override
-    public List<RegItem> toEntity(List<RegisCreatedDto> arg0) {
-        if ( arg0 == null ) {
+    public List<RegItem> toEntity(List<RegisCreatedDto> dtoList) {
+        if ( dtoList == null ) {
             return null;
         }
 
-        List<RegItem> list = new ArrayList<RegItem>( arg0.size() );
-        for ( RegisCreatedDto regisCreatedDto : arg0 ) {
+        List<RegItem> list = new ArrayList<RegItem>( dtoList.size() );
+        for ( RegisCreatedDto regisCreatedDto : dtoList ) {
             list.add( toEntity( regisCreatedDto ) );
         }
 
@@ -55,22 +55,22 @@ public class RegisCreatedMapperImpl implements RegisCreatedMapper {
     }
 
     @Override
-    public void partialUpdate(RegItem arg0, RegisCreatedDto arg1) {
-        if ( arg1 == null ) {
+    public void partialUpdate(RegItem entity, RegisCreatedDto dto) {
+        if ( dto == null ) {
             return;
         }
 
-        if ( arg1.getCode() != null ) {
-            arg0.setCode( arg1.getCode() );
+        if ( dto.getCode() != null ) {
+            entity.setCode( dto.getCode() );
         }
-        if ( arg1.getStatus() != null ) {
-            arg0.setStatus( Enum.valueOf( RegisStatus.class, arg1.getStatus() ) );
+        if ( dto.getStatus() != null ) {
+            entity.setStatus( Enum.valueOf( RegisStatus.class, dto.getStatus() ) );
         }
-        if ( arg1.getCreated_at() != null ) {
-            arg0.setCreated_at( LocalDateTime.parse( arg1.getCreated_at() ) );
+        if ( dto.getCreated_at() != null ) {
+            entity.setCreated_at( LocalDateTime.parse( dto.getCreated_at() ) );
         }
-        if ( arg1.getTerm() != null ) {
-            arg0.setTerm( arg1.getTerm() );
+        if ( dto.getTerm() != null ) {
+            entity.setTerm( dto.getTerm() );
         }
     }
 

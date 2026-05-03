@@ -13,6 +13,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1.0/pdt/registration")
 public class RegistrationController {
     private final RegistrationService registrationService;
@@ -39,10 +40,17 @@ public class RegistrationController {
         return BaseResponse.ok(response);
     }
 
+    @PutMapping("/approveAll")
+    public BaseResponse<?> ApproveAllRegis(){
+        log.info("Request PUT");
+        var response = this.registrationService.approveAllRegis();
+        return BaseResponse.ok(response);
+    }
+
     @PutMapping("/approve")
-    public BaseResponse<?> ApproveRegis(@RequestBody List<Integer> ids){
-        log.info("Request PUT /{}", ids);
-        var response = this.registrationService.approveRegisIds(ids);
+    public BaseResponse<?> ApproveRegis(@RequestParam Integer id){
+        log.info("Request PUT /{}", id);
+        var response = this.registrationService.approveRegis(id);
         return BaseResponse.ok(response);
     }
 
@@ -50,6 +58,13 @@ public class RegistrationController {
     public BaseResponse<?> RejectRegis(@RequestParam Integer id){
         log.info("Request PUT /{}", id);
         var response = this.registrationService.rejectRegisId(id);
+        return BaseResponse.ok(response);
+    }
+
+    @PutMapping("/rejectAll")
+    public BaseResponse<?> RejectAllRegis(){
+        log.info("Request PUT");
+        var response = this.registrationService.rejectAllRegis();
         return BaseResponse.ok(response);
     }
 }

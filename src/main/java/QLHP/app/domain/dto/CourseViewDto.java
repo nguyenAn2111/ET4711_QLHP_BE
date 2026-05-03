@@ -6,6 +6,7 @@ import java.util.Date;
 
 @Data
 public class CourseViewDto {
+    private Integer id;
     private String name;
     private String code;
     private Integer credit;

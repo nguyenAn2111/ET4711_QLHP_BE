@@ -14,7 +14,11 @@ public interface RegistrationService {
 
     RegisCreatedDto createRegis(CreateRegisRequest regisRequest);
 
-    List<Integer> approveRegisIds(List<Integer> ids);
+    List<Integer> approveAllRegis();
+
+    Integer approveRegis(Integer regisId);
+
+    List<Integer> rejectAllRegis();
 
     Integer rejectRegisId(Integer id);
 

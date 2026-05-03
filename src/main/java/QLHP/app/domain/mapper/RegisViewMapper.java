@@ -17,6 +17,8 @@ public interface RegisViewMapper extends EntityMapper<RegisViewDto, RegItem> {
     @Mapping(target = "student_name", source = "student.name")
     @Mapping(target = "student_code", source = "student.code")
     @Mapping(target = "course_name", source = "course.name")
+    @Mapping(target = "course_code", source = "course.code")
+    @Mapping(target = "student_unit", source = "student.unit")
     RegisViewDto toDto(RegItem entity);
 
     List<RegisViewDto> toDto(List<RegItem> entities);

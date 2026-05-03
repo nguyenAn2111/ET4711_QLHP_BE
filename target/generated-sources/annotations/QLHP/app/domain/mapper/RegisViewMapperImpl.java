@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-05-03T11:40:01+0700",
+    date = "2026-05-03T22:17:46+0700",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 21.0.10 (Ubuntu)"
 )
 @Component
@@ -74,6 +74,8 @@ public class RegisViewMapperImpl implements RegisViewMapper {
         regisViewDto.setStudent_name( entityStudentName( entity ) );
         regisViewDto.setStudent_code( entityStudentCode( entity ) );
         regisViewDto.setCourse_name( entityCourseName( entity ) );
+        regisViewDto.setCourse_code( entityCourseCode( entity ) );
+        regisViewDto.setStudent_unit( entityStudentUnit( entity ) );
         regisViewDto.setId( entity.getId() );
         regisViewDto.setCode( entity.getCode() );
         regisViewDto.setStatus( entity.getStatus() );
@@ -138,5 +140,35 @@ public class RegisViewMapperImpl implements RegisViewMapper {
             return null;
         }
         return name;
+    }
+
+    private String entityCourseCode(RegItem regItem) {
+        if ( regItem == null ) {
+            return null;
+        }
+        Course course = regItem.getCourse();
+        if ( course == null ) {
+            return null;
+        }
+        String code = course.getCode();
+        if ( code == null ) {
+            return null;
+        }
+        return code;
+    }
+
+    private String entityStudentUnit(RegItem regItem) {
+        if ( regItem == null ) {
+            return null;
+        }
+        Student student = regItem.getStudent();
+        if ( student == null ) {
+            return null;
+        }
+        String unit = student.getUnit();
+        if ( unit == null ) {
+            return null;
+        }
+        return unit;
     }
 }

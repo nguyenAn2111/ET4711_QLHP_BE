@@ -11,6 +11,8 @@ public class RegisViewDto {
 //    private Integer course_id;
     private String student_name;
     private String student_code;
+    private String student_unit;
     private String course_name;
+    private String course_code;
     private RegisStatus status;
 }

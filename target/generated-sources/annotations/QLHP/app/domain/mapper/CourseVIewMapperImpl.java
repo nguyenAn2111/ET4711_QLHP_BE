@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-05-01T23:45:12+0700",
+    date = "2026-05-03T19:51:45+0700",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.18 (Ubuntu)"
 )
 @Component
@@ -25,6 +25,7 @@ public class CourseVIewMapperImpl implements CourseVIewMapper {
 
         Course course = new Course();
 
+        course.setId( dto.getId() );
         course.setName( dto.getName() );
         course.setCode( dto.getCode() );
         course.setCredit( dto.getCredit() );
@@ -76,6 +77,9 @@ public class CourseVIewMapperImpl implements CourseVIewMapper {
             return;
         }
 
+        if ( dto.getId() != null ) {
+            entity.setId( dto.getId() );
+        }
         if ( dto.getName() != null ) {
             entity.setName( dto.getName() );
         }
@@ -113,6 +117,7 @@ public class CourseVIewMapperImpl implements CourseVIewMapper {
 
         CourseViewDto courseViewDto = new CourseViewDto();
 
+        courseViewDto.setId( course.getId() );
         courseViewDto.setName( course.getName() );
         courseViewDto.setCode( course.getCode() );
         courseViewDto.setCredit( course.getCredit() );

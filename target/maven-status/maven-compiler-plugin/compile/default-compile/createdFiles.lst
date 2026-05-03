@@ -1,4 +1,5 @@
 QLHP/app/repository/PDT/CourseRepository.class
+QLHP/app/domain/entity/RegItem_.class
 QLHP/app/domain/dto/CourseDetailDto.class
 QLHP/app/service/PDT/CourseService.class
 QLHP/BackendApplication.class
@@ -16,7 +17,9 @@ QLHP/app/controller/PDT/AuthController.class
 QLHP/fw/web/rest/errors/ConflictException.class
 QLHP/app/common/enums/CourseStatus.class
 QLHP/app/domain/dto/CourseViewDto.class
+QLHP/app/domain/mapper/RegisCreatedMapper.class
 QLHP/fw/web/rest/vm/BasePageRequest.class
+QLHP/app/repository/SV/StudentRepository.class
 QLHP/fw/mapper/EntityMapper.class
 QLHP/app/controller/PDT/RegistrationController.class
 QLHP/app/service/PDT/AuthService.class
@@ -35,11 +38,13 @@ QLHP/app/service/PDT/impl/TermServiceImpl.class
 QLHP/app/service/PDT/TermService.class
 QLHP/app/service/PDT/impl/AuthServiceImpl.class
 QLHP/app/domain/entity/Student.class
+QLHP/app/domain/mapper/RegisCreatedMapperImpl.class
 QLHP/app/service/PDT/impl/StudentServiceImpl.class
 QLHP/app/common/enums/RegisStatus.class
 QLHP/app/domain/entity/Course.class
 QLHP/app/domain/entity/RegItem.class
 QLHP/fw/web/rest/errors/NotFoundException.class
+QLHP/app/domain/dto/RegisCreatedDto.class
 QLHP/fw/web/rest/HealthCheckController.class
 QLHP/app/domain/entity/Student_.class
 QLHP/app/common/enums/SysError.class

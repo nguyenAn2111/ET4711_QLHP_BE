@@ -76,8 +76,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     @Transactional
-    public List<Integer> approveRegisIds(List<Integer> ids) {
-        List<RegItem> regisList = this.regisRepository.findAllById(ids);
+    public List<Integer> approveAllRegis() {
+        List<RegItem> regisList = this.regisRepository.findAll();
 
         if (regisList.isEmpty()) {
             throw new RuntimeException("No Regis found");
@@ -93,6 +93,20 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     @Transactional
+    public Integer approveRegis(Integer id) {
+        RegItem regis = regisRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Regis not found"));
+
+        regis.setStatus(RegisStatus.APPROVED);
+
+        regisRepository.save(regis);
+
+        return regis.getId();
+    }
+
+
+    @Override
+    @Transactional
     public Integer rejectRegisId(Integer id) {
         RegItem regis = regisRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Regis not found"));
@@ -104,6 +118,22 @@ public class RegistrationServiceImpl implements RegistrationService {
         return regis.getId();
     }
 
+    @Override
+    @Transactional
+    public List<Integer> rejectAllRegis() {
+        List<RegItem> regisList = this.regisRepository.findAll();
+
+        if (regisList.isEmpty()) {
+            throw new RuntimeException("No Regis found");
+        }
+
+        regisList.forEach(regis -> regis.setStatus(RegisStatus.DECLINED));
+        regisRepository.saveAll(regisList);
+
+        return regisList.stream()
+                .map(RegItem::getId)
+                .toList();
+    }
 
     @Override
     public boolean deleteRegis (Integer id){
