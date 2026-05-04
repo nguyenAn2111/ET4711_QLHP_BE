@@ -11,35 +11,35 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-05-03T22:17:46+0700",
+    date = "2026-05-04T14:19:38+0700",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 21.0.10 (Ubuntu)"
 )
 @Component
 public class RegisViewMapperImpl implements RegisViewMapper {
 
     @Override
-    public RegItem toEntity(RegisViewDto arg0) {
-        if ( arg0 == null ) {
+    public RegItem toEntity(RegisViewDto dto) {
+        if ( dto == null ) {
             return null;
         }
 
         RegItem regItem = new RegItem();
 
-        regItem.setId( arg0.getId() );
-        regItem.setCode( arg0.getCode() );
-        regItem.setStatus( arg0.getStatus() );
+        regItem.setId( dto.getId() );
+        regItem.setCode( dto.getCode() );
+        regItem.setStatus( dto.getStatus() );
 
         return regItem;
     }
 
     @Override
-    public List<RegItem> toEntity(List<RegisViewDto> arg0) {
-        if ( arg0 == null ) {
+    public List<RegItem> toEntity(List<RegisViewDto> dtoList) {
+        if ( dtoList == null ) {
             return null;
         }
 
-        List<RegItem> list = new ArrayList<RegItem>( arg0.size() );
-        for ( RegisViewDto regisViewDto : arg0 ) {
+        List<RegItem> list = new ArrayList<RegItem>( dtoList.size() );
+        for ( RegisViewDto regisViewDto : dtoList ) {
             list.add( toEntity( regisViewDto ) );
         }
 
@@ -47,19 +47,19 @@ public class RegisViewMapperImpl implements RegisViewMapper {
     }
 
     @Override
-    public void partialUpdate(RegItem arg0, RegisViewDto arg1) {
-        if ( arg1 == null ) {
+    public void partialUpdate(RegItem entity, RegisViewDto dto) {
+        if ( dto == null ) {
             return;
         }
 
-        if ( arg1.getId() != null ) {
-            arg0.setId( arg1.getId() );
+        if ( dto.getId() != null ) {
+            entity.setId( dto.getId() );
         }
-        if ( arg1.getCode() != null ) {
-            arg0.setCode( arg1.getCode() );
+        if ( dto.getCode() != null ) {
+            entity.setCode( dto.getCode() );
         }
-        if ( arg1.getStatus() != null ) {
-            arg0.setStatus( arg1.getStatus() );
+        if ( dto.getStatus() != null ) {
+            entity.setStatus( dto.getStatus() );
         }
     }
 

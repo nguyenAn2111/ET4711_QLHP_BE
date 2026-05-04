@@ -9,9 +9,11 @@ import QLHP.app.domain.entity.Course;
 import QLHP.app.domain.entity.RegItem;
 import QLHP.app.domain.mapper.CourseDetailMapper;
 import QLHP.app.domain.mapper.CourseVIewMapper;
+import QLHP.app.domain.mapper.RegisCreatedMapper;
 import QLHP.app.domain.payload.request.CreateCourseRequest;
 import QLHP.app.domain.payload.request.UpdateCourseRequest;
 import QLHP.app.repository.PDT.CourseRepository;
+import QLHP.app.repository.PDT.RegistrationRepository;
 import QLHP.app.service.PDT.CourseService;
 import QLHP.fw.web.rest.errors.BadRequestException;
 import QLHP.fw.web.rest.vm.BaseResponse;
@@ -21,7 +23,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -31,11 +35,27 @@ public class CourseServiceImpl implements CourseService {
     private final CourseRepository courseRepository;
     private final CourseVIewMapper courseVIewMapper;
     private final CourseDetailMapper courseDetailMapper;
+    private final RegistrationRepository regisRepository;
 
     @Override
     public List<CourseViewDto> getAllCourses(){
         List<Course> courses = this.courseRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
-        return this.courseVIewMapper.toDto(courses);
+
+        Map<Integer, Long> regisCountMap = getRegisCountByCourse();
+
+        return this.courseVIewMapper.toDto(courses, regisCountMap);
+    }
+
+    public Map<Integer, Long> getRegisCountByCourse(){
+        List<Object[]> results = regisRepository.countRegisByCourse();
+
+        Map<Integer, Long> map = new HashMap<>();
+        for (Object[] row : results) {
+            Integer courseId = (Integer) row[0];
+            Long count = (Long) row[1];
+            map.put(courseId, count);
+        }
+        return map;
     }
     
     @Override

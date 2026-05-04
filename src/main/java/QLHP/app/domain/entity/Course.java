@@ -53,8 +53,8 @@ public class Course {
     @Enumerated(EnumType.STRING)
     private CourseStatus status;
 
-    @Column(name = "regis_num")
-    private Integer regis_num;
+//    @Column(name = "regis_num")
+//    private Integer regis_num;
 
     @Column(name = "term")
     private String term;

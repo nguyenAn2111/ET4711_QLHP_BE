@@ -9,7 +9,8 @@ import QLHP.app.domain.entity.RegItem;
 import QLHP.app.domain.entity.Student;
 import QLHP.app.domain.mapper.RegisCreatedMapper;
 import QLHP.app.domain.mapper.RegisViewMapper;
-import QLHP.app.domain.payload.request.CreateRegisRequest;
+import QLHP.app.domain.payload.request.PdtCreateRegisRequest;
+import QLHP.app.domain.payload.request.SvCreateRegisRequest;
 import QLHP.app.repository.PDT.CourseRepository;
 import QLHP.app.repository.PDT.RegistrationRepository;
 import QLHP.app.repository.SV.StudentRepository;
@@ -19,14 +20,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import QLHP.app.domain.entity.RegItem;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
-
-import static QLHP.app.domain.entity.RegItem_.course;
-import static QLHP.app.domain.entity.RegItem_.student;
 
 @Service
 @RequiredArgsConstructor
@@ -48,7 +45,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     @Transactional
-    public RegisCreatedDto createRegis(CreateRegisRequest regisRequest) {
+    public RegisCreatedDto SVcreateRegis(SvCreateRegisRequest regisRequest) {
 
         Student student = studentRepository.findById(regisRequest.getStudentId())
                 .orElseThrow(() -> new RuntimeException("Student not found"));
@@ -58,8 +55,11 @@ public class RegistrationServiceImpl implements RegistrationService {
 
         RegItem regis = new RegItem();
 
-        regis.setStudentId(regisRequest.getStudentId());
-        regis.setCourseId(regisRequest.getCourseId());
+//        regis.setStudentId(regisRequest.getStudentId());
+//        regis.setCourseId(regisRequest.getCourseId());
+
+        regis.setStudent(student);
+        regis.setCourse(course);
 
         String code = student.getCode()+ course.getCode();
         regis.setCode(code);
@@ -68,8 +68,33 @@ public class RegistrationServiceImpl implements RegistrationService {
         regis.setCreated_at(LocalDateTime.now());
 
         regis = this.regisRepository.save(regis);
+
+        return this.regisCreatedMapper.toDto(regis);
+    }
+
+    @Override
+    @Transactional
+    public RegisCreatedDto PDTcreateRegis(PdtCreateRegisRequest regisRequest) {
+
+        Student student = studentRepository.findByCode(regisRequest.getStudent_code())
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+
+        Course course = courseRepository.findByCode(regisRequest.getCourse_code())
+                .orElseThrow(() -> new RuntimeException("Course not found"));
+
+        RegItem regis = new RegItem();
+
         regis.setStudent(student);
         regis.setCourse(course);
+
+        String code = student.getCode()+ course.getCode();
+        regis.setCode(code);
+
+        regis.setStatus(RegisStatus.WAITING);
+        regis.setCreated_at(LocalDateTime.now());
+        regis.setTerm("2025.2");
+
+        regis = this.regisRepository.save(regis);
 
         return this.regisCreatedMapper.toDto(regis);
     }

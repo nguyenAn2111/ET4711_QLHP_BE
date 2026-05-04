@@ -1,13 +1,12 @@
 package QLHP.app.controller.PDT;
 
-import QLHP.app.domain.payload.request.CreateRegisRequest;
+import QLHP.app.domain.payload.request.PdtCreateRegisRequest;
+import QLHP.app.domain.payload.request.SvCreateRegisRequest;
 import QLHP.app.service.PDT.RegistrationService;
 import QLHP.fw.web.rest.vm.BaseResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @Slf4j
@@ -26,10 +25,17 @@ public class RegistrationController {
         return BaseResponse.ok(response);
     }
 
-    @PostMapping("/create")
-    public BaseResponse<?> CreateRegis(@RequestBody CreateRegisRequest request){
+    @PostMapping("/SV/create")
+    public BaseResponse<?> SvCreateRegis(@RequestBody SvCreateRegisRequest request){
         log.info("Request POST /create: {}", request);
-        var response = this.registrationService.createRegis(request);
+        var response = this.registrationService.SVcreateRegis(request);
+        return BaseResponse.ok(response);
+    }
+
+    @PostMapping("/PDT/create")
+    public BaseResponse<?> PdtCreateRegis(@RequestBody PdtCreateRegisRequest request){
+        log.info("Request POST /create: {}", request);
+        var response = this.registrationService.PDTcreateRegis(request);
         return BaseResponse.ok(response);
     }
 

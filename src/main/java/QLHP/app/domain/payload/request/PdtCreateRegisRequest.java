@@ -4,12 +4,12 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class CreateRegisRequest {
+public class PdtCreateRegisRequest {
     @NotNull
-    private Integer studentId;
+    private String student_code;
     @NotNull
-    private Integer courseId;
+    private String course_code;
 //    private String status;
-    private String term;
+//    private String term;
 //    private String code;
 }

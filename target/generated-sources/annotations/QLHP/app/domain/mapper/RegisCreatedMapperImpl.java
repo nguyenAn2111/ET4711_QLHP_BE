@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-05-03T19:51:44+0700",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.18 (Ubuntu)"
+    date = "2026-05-04T15:19:24+0700",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 21.0.10 (Ubuntu)"
 )
 @Component
 public class RegisCreatedMapperImpl implements RegisCreatedMapper {

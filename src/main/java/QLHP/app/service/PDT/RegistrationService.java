@@ -2,7 +2,8 @@ package QLHP.app.service.PDT;
 
 import QLHP.app.domain.dto.RegisCreatedDto;
 import QLHP.app.domain.dto.RegisViewDto;
-import QLHP.app.domain.payload.request.CreateRegisRequest;
+import QLHP.app.domain.payload.request.PdtCreateRegisRequest;
+import QLHP.app.domain.payload.request.SvCreateRegisRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,9 @@ public interface RegistrationService {
 
     List<RegisViewDto> getAllRegis();
 
-    RegisCreatedDto createRegis(CreateRegisRequest regisRequest);
+    RegisCreatedDto SVcreateRegis(SvCreateRegisRequest regisRequest);
+
+    RegisCreatedDto PDTcreateRegis(PdtCreateRegisRequest regisRequest);
 
     List<Integer> approveAllRegis();
 

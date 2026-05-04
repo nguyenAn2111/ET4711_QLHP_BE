@@ -15,7 +15,6 @@ public abstract class Course_ {
 
 	public static volatile SingularAttribute<Course, Date> end_at;
 	public static volatile SingularAttribute<Course, String> code;
-	public static volatile SingularAttribute<Course, Integer> regis_num;
 	public static volatile SetAttribute<Course, RegItem> regItems;
 	public static volatile SingularAttribute<Course, String> name;
 	public static volatile SingularAttribute<Course, LocalDateTime> created_at;
@@ -28,7 +27,6 @@ public abstract class Course_ {
 
 	public static final String END_AT = "end_at";
 	public static final String CODE = "code";
-	public static final String REGIS_NUM = "regis_num";
 	public static final String REG_ITEMS = "regItems";
 	public static final String NAME = "name";
 	public static final String CREATED_AT = "created_at";

@@ -41,18 +41,18 @@ public class RegItem {
     public RegisStatus status;
 
 
-    @Column(name = "student_id")
-    private Integer studentId;
-
-    @Column(name = "course_id")
-    private Integer courseId;
+//    @Column(name = "student_id")
+//    private Integer studentId;
+//
+//    @Column(name = "course_id")
+//    private Integer courseId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name ="course_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name ="course_id", referencedColumnName = "id")
     private Course course;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id", referencedColumnName ="id", insertable = false, updatable = false)
+    @JoinColumn(name = "student_id", referencedColumnName ="id")
     private Student student;
 
 
