@@ -1,22 +1,20 @@
 package QLHP.app.service.PDT.impl;
 
 import QLHP.app.common.enums.CourseStatus;
-import QLHP.app.common.enums.RegisStatus;
 import QLHP.app.common.enums.SysError;
 import QLHP.app.domain.dto.CourseDetailDto;
 import QLHP.app.domain.dto.CourseViewDto;
 import QLHP.app.domain.entity.Course;
-import QLHP.app.domain.entity.RegItem;
 import QLHP.app.domain.mapper.CourseDetailMapper;
 import QLHP.app.domain.mapper.CourseVIewMapper;
-import QLHP.app.domain.mapper.RegisCreatedMapper;
+import QLHP.app.domain.payload.request.CourseFilterRequest;
 import QLHP.app.domain.payload.request.CreateCourseRequest;
 import QLHP.app.domain.payload.request.UpdateCourseRequest;
 import QLHP.app.repository.PDT.CourseRepository;
 import QLHP.app.repository.PDT.RegistrationRepository;
+import QLHP.app.repository.PDT.specification.CourseSpecification;
 import QLHP.app.service.PDT.CourseService;
 import QLHP.fw.web.rest.errors.BadRequestException;
-import QLHP.fw.web.rest.vm.BaseResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
@@ -172,6 +170,17 @@ public class CourseServiceImpl implements CourseService {
         return true;
     }
 
+    @Override
+    public List<CourseViewDto> filterCourses(CourseFilterRequest request) {
 
-    
+        List<Course> courses = courseRepository.findAll(
+                CourseSpecification.filter(request),
+                Sort.by(Sort.Direction.ASC, "name")
+        );
+
+        Map<Integer, Long> regisCountMap = getRegisCountByCourse();
+
+        return courseVIewMapper.toDto(courses, regisCountMap);
+    }
+
 }

@@ -15,4 +15,5 @@ public class RegisViewDto {
     private String course_name;
     private String course_code;
     private RegisStatus status;
+    private String term;
 }

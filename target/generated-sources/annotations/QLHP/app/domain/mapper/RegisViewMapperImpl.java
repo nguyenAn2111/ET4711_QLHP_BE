@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-05-04T14:19:38+0700",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 21.0.10 (Ubuntu)"
+    date = "2026-05-04T20:57:16+0700",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.18 (Ubuntu)"
 )
 @Component
 public class RegisViewMapperImpl implements RegisViewMapper {
@@ -28,6 +28,7 @@ public class RegisViewMapperImpl implements RegisViewMapper {
         regItem.setId( dto.getId() );
         regItem.setCode( dto.getCode() );
         regItem.setStatus( dto.getStatus() );
+        regItem.setTerm( dto.getTerm() );
 
         return regItem;
     }
@@ -61,6 +62,9 @@ public class RegisViewMapperImpl implements RegisViewMapper {
         if ( dto.getStatus() != null ) {
             entity.setStatus( dto.getStatus() );
         }
+        if ( dto.getTerm() != null ) {
+            entity.setTerm( dto.getTerm() );
+        }
     }
 
     @Override
@@ -79,6 +83,7 @@ public class RegisViewMapperImpl implements RegisViewMapper {
         regisViewDto.setId( entity.getId() );
         regisViewDto.setCode( entity.getCode() );
         regisViewDto.setStatus( entity.getStatus() );
+        regisViewDto.setTerm( entity.getTerm() );
 
         return regisViewDto;
     }

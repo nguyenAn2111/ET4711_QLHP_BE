@@ -3,6 +3,7 @@ package QLHP.app.service.PDT;
 import QLHP.app.domain.dto.RegisCreatedDto;
 import QLHP.app.domain.dto.RegisViewDto;
 import QLHP.app.domain.payload.request.PdtCreateRegisRequest;
+import QLHP.app.domain.payload.request.RegisFilterRequest;
 import QLHP.app.domain.payload.request.SvCreateRegisRequest;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,8 @@ public interface RegistrationService {
     List<Integer> rejectAllRegis();
 
     Integer rejectRegisId(Integer id);
+
+    List<RegisViewDto> filterRegis(RegisFilterRequest request);
 
     boolean deleteRegis(Integer id);
 }

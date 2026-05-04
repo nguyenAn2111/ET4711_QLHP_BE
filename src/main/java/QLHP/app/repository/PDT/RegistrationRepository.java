@@ -3,6 +3,7 @@ package QLHP.app.repository.PDT;
 import QLHP.app.domain.dto.CourseRegisCountDto;
 import QLHP.app.domain.entity.RegItem;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -17,7 +18,7 @@ public interface RegistrationRepository extends JpaRepository<RegItem, Integer>,
 //    @EntityGraph(value = "RegItem.student", type = EntityGraph.EntityGraphType.FETCH)
 
     @EntityGraph(attributePaths = {"student", "course"})
-    List<RegItem> findAll(Sort sort);
+    List<RegItem> findAll(Specification<RegItem> spec, Sort sort);
 
     @Query("SELECT r.course.id, COUNT(r) FROM RegItem r GROUP BY r.course.id")
 //    List<CourseRegisCountDto> countRegisByCourse();

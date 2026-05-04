@@ -4,6 +4,7 @@ import QLHP.app.common.enums.CourseType;
 import QLHP.app.domain.dto.CourseDetailDto;
 import QLHP.app.domain.dto.CourseViewDto;
 import QLHP.app.domain.entity.Course;
+import QLHP.app.domain.payload.request.CourseFilterRequest;
 import QLHP.app.domain.payload.request.CreateCourseRequest;
 import QLHP.app.domain.payload.request.UpdateCourseRequest;
 import QLHP.fw.web.rest.vm.BaseResponse;
@@ -27,6 +28,8 @@ public interface CourseService {
 
     Integer closeCourse(Integer id);
     Integer openCourse(Integer id);
+
+    List<CourseViewDto> filterCourses(CourseFilterRequest request);
 
     boolean deleteCourse(Integer id);
 }

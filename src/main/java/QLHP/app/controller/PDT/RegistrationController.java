@@ -1,12 +1,17 @@
 package QLHP.app.controller.PDT;
 
+import QLHP.app.common.enums.RegisStatus;
+import QLHP.app.domain.dto.RegisViewDto;
 import QLHP.app.domain.payload.request.PdtCreateRegisRequest;
+import QLHP.app.domain.payload.request.RegisFilterRequest;
 import QLHP.app.domain.payload.request.SvCreateRegisRequest;
 import QLHP.app.service.PDT.RegistrationService;
 import QLHP.fw.web.rest.vm.BaseResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Slf4j
@@ -72,5 +77,24 @@ public class RegistrationController {
         log.info("Request PUT");
         var response = this.registrationService.rejectAllRegis();
         return BaseResponse.ok(response);
+    }
+
+    @GetMapping("/list")
+    public BaseResponse<List<RegisViewDto>> filterRegis(
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) RegisStatus status,
+            @RequestParam(required = false) String term,
+            @RequestParam(required = false) String unit
+    ) {
+
+        RegisFilterRequest req = new RegisFilterRequest();
+        req.setKeyword(keyword);
+        req.setStatus(status);
+        req.setTerm(term);
+        req.setUnit(unit);
+
+        List<RegisViewDto> result = registrationService.filterRegis(req);
+
+        return BaseResponse.ok(result);
     }
 }

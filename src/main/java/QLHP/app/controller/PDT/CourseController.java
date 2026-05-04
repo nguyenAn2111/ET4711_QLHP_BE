@@ -1,5 +1,9 @@
 package QLHP.app.controller.PDT;
 
+import QLHP.app.common.enums.CourseStatus;
+import QLHP.app.common.enums.CourseType;
+import QLHP.app.domain.dto.CourseViewDto;
+import QLHP.app.domain.payload.request.CourseFilterRequest;
 import QLHP.app.domain.payload.request.CreateCourseRequest;
 import QLHP.app.domain.payload.request.UpdateCourseRequest;
 import QLHP.app.service.PDT.CourseService;
@@ -8,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -89,6 +94,24 @@ public class CourseController {
         var response = this.courseService.deleteCourse(id);
         log.info("Response from DELETE /course/{}", response);
         return BaseResponse.ok(response);
+    }
+
+    @GetMapping("/list")
+    public BaseResponse<List<CourseViewDto>> filterCourses(
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) CourseType type,
+            @RequestParam(required = false) CourseStatus status,
+            @RequestParam(required = false) String term
+    ) {
+        CourseFilterRequest req = new CourseFilterRequest();
+        req.setKeyword(keyword);
+        req.setType(type);
+        req.setStatus(status);
+        req.setTerm(term);
+
+        List<CourseViewDto> result = courseService.filterCourses(req);
+
+        return BaseResponse.ok(result);
     }
 
 }

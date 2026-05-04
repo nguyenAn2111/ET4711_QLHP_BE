@@ -10,15 +10,18 @@ import QLHP.app.domain.entity.Student;
 import QLHP.app.domain.mapper.RegisCreatedMapper;
 import QLHP.app.domain.mapper.RegisViewMapper;
 import QLHP.app.domain.payload.request.PdtCreateRegisRequest;
+import QLHP.app.domain.payload.request.RegisFilterRequest;
 import QLHP.app.domain.payload.request.SvCreateRegisRequest;
 import QLHP.app.repository.PDT.CourseRepository;
 import QLHP.app.repository.PDT.RegistrationRepository;
+import QLHP.app.repository.PDT.specification.RegisSpecification;
 import QLHP.app.repository.SV.StudentRepository;
 import QLHP.app.service.PDT.RegistrationService;
 import QLHP.fw.web.rest.errors.BadRequestException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -161,6 +164,19 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
     @Override
+    public List<RegisViewDto> filterRegis(RegisFilterRequest req) {
+
+        Specification<RegItem> spec = RegisSpecification.filter(req);
+
+        List<RegItem> regis = regisRepository.findAll(
+                spec,
+                Sort.by(Sort.Direction.ASC, "id")
+        );
+
+        return regisViewMapper.toDto(regis);
+    }
+
+    @Override
     public boolean deleteRegis (Integer id){
 
         RegItem existingRegis = this.regisRepository.findById(id).orElseThrow(()
@@ -169,4 +185,5 @@ public class RegistrationServiceImpl implements RegistrationService {
         this.regisRepository.delete(existingRegis);
         return true;
     }
+
 }
